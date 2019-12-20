@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import MainPage from './containers/MainPage/MainPage';
+import AddPostForm from './containers/AddPostForm/AddPostForm';
+import Contacts from './containers/Contacts/Contacts'
+import About from './containers/About/About'
+import Post from './components/Posts/Post';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import './bootstrap.min.css';
+
+
+const App = () => (
+  <BrowserRouter>
+    <Switch>
+      <Route path='/' exact component={MainPage}/>
+      <Route path='/posts/add' component={AddPostForm}/>
+      <Route path='/posts/:id' component={Post}/>
+      <Route path='/about'  component={About}/>
+      <Route path='/contacts'  component={Contacts}/>
+      <Route render={() => <h1>Not found</h1>}/>
+    </Switch>
+  </BrowserRouter>
+);
 
 export default App;
